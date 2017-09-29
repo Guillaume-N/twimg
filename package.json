@@ -1,0 +1,9 @@
+{
+  "name": "twimg",
+  "version": "0.0.1",
+  "description": "Find latest images from twitter",
+  "main": "index.js",
+  "author": "Guillaume",
+  "license": "MIT",
+  "dependencies": {}
+}
