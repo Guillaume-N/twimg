@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Twimages</title>
+  <title>Twimg - Latest images from twitter</title>
   <link rel="icon" type="image/png" href="twitter-ico.png" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
@@ -13,55 +13,39 @@
   <section class="section">
     <div class="container">
       <h1 class="title">
-        Twimages
+        <i class="fa fa-hashtag hashtag" aria-hidden="true"></i>Twimg
       </h1>
       <p class="subtitle">
         Find latest images from twitter
       </p>
     </div>
-     </section>
+  </section>
 
-     <section class="section center">
-        <div class="field">
-          <label class="label">Enter a hashtag :</label>
-          </div>
-          <div class="field">
-          <div class="control">
-            <input class="input" type="text" placeholder="#shoes,#selfie...">
-          </div>
-        </div>
-        <div class="field">
-          <div class="control center">
-            <button class="button is-primary">Submit</button>
-          </div>
-        </div>
-     </section>
+  <section class="section center">
+    <div class="field">
+      <label class="label">Enter a hashtag :</label>
+    </div>
+    <div class="field">
+      <div class="control">
+        <input class="input" type="text" placeholder="#shoes,#selfie...">
+      </div>
+    </div>
+    <div class="field">
+      <div class="control center">
+        <button class="button is-primary">Submit</button>
+      </div>
+    </div>
+  </section>
 
-     <section class="section center">
-        <p>images here</p>
-     </section>
-
-
-
- 
-
-<!--
-  <div class="columns">
-  <div class="column">
-    First column
+  <section class="section center">
+    <div id="images" class="container">
+      <span>{{ text }}</span>
   </div>
-  <div class="column">
-    Second column
-  </div>
-  <div class="column">
-    Third column
-  </div>
-  <div class="column">
-    Fourth column
-  </div>
-</div>
+  </section>
+  
 
--->
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script src="index.js"></script>
 
 </body>
 </html>

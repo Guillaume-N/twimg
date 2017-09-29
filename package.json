@@ -5,5 +5,8 @@
   "main": "index.js",
   "author": "Guillaume",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "bulma": "^0.5.3",
+    "vue": "^2.4.4"
+  }
 }
