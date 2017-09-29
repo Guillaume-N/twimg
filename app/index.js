@@ -1,17 +1,28 @@
 window.onload = function() {
 
-const app = new Vue({
+	const apiUrl = '';
+	const http = axios;
+
+	const app = new Vue({
 		el: "#images",
 		data: { 
 			text: "blabla"
 		},
 		methods: {
-			getImages: () => console.log('get images')
+			getImages: () => {
+				http.get(apiUrl)
+				.then(function (response) {
+					console.log(response);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+			}
 		}
 	});
 
 
-app.getImages();
+	//app.getImages();
 
 
 };

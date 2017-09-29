@@ -6,7 +6,7 @@
   "author": "Guillaume",
   "license": "MIT",
   "dependencies": {
-    "bulma": "^0.5.3",
+    "axios": "^0.16.2",
     "vue": "^2.4.4"
   }
 }
