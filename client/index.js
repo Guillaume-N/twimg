@@ -1,6 +1,6 @@
 window.onload = function() {
 
-	const apiUrl = '';
+	const apiUrl = 'http://localhost:8081/api/images';
 	const http = axios;
 
 	const app = new Vue({
@@ -12,7 +12,7 @@ window.onload = function() {
 			getImages: () => {
 				http.get(apiUrl)
 				.then(function (response) {
-					console.log(response);
+					console.log(response.data);
 				})
 				.catch(function (error) {
 					console.log(error);
@@ -22,7 +22,7 @@ window.onload = function() {
 	});
 
 
-	//app.getImages();
+	app.getImages();
 
 
 };
