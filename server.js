@@ -3,6 +3,7 @@ const cors			= require('cors');
 const app			= express();
 const bodyParser 	= require('body-parser');
 const compress		= require('compression');
+const Twit			= require('twit');
 
 app.use(cors());
 app.options('*', cors());
@@ -15,6 +16,14 @@ app.use(compress());
 
 const port = 8081;
 const router = express.Router();
+
+const T = new Twit({
+  // INSERT CREDENTIALS HERE
+})
+
+T.get('search/tweets', { q: 'banana since:2011-07-11', count: 100 }, function(err, data, response) {
+  console.log(data)
+})
 
 
 app.get('/', (req, res, next) => {
