@@ -40,7 +40,9 @@
 
     <section class="section center">
       <div id="images" class="container">
-        <span>{{ text }}</span>
+        <span v-for="image in images">
+          <a v-bind:href="image.image_url"><img v-bind:src="image.image_url" /></a>
+        </span>
       </div>
     </section>
   </div>

@@ -6,28 +6,31 @@ window.onload = function() {
 	const app = new Vue({
 		el: "#twimg",
 		data: { 
-			text: "blabla",
-			hashtag: ""
+			hashtag: "",
+			images: ""
 		},
 		methods: {
-			getImages: function() {
-				console.log(this.hashtag);
-				if(this.hashtag) {
-
-					if(this.hashtag[0] == "#") this.hashtag = this.hashtag.substring(1);
-					
-					http.get(apiUrl+'/'+this.hashtag)
-					.then(function (response) {
-						console.log(response.data);
-					})
-					.catch(function (error) {
-						console.log(error);
-					});
-				}
-
-			}
+			getImages: () => refreshImages()
 		}
 	});
+
+	const refreshImages = () => {
+		if(app.hashtag) {
+			if(app.hashtag[0] == "#") app.hashtag = app.hashtag.substring(1);
+
+			http.get(apiUrl+'/'+app.hashtag)
+			.then(function (response) {
+						//console.log(response.data);
+						app.images = response.data;
+						console.log('images', app.images);
+					})
+			.catch(function (error) {
+				console.log(error);
+			});
+		}
+	}
+
+	setInterval(refreshImages, 30000);
 
 
 	//app.getImages();
