@@ -28,21 +28,24 @@
       </div>
       <div class="field">
         <div class="control">
-          <input class="input" type="text" placeholder="#selfie" v-model="hashtag">
+          <input class="input" type="text" placeholder="#sneakers" v-model="hashtag" autofocus>
         </div>
       </div>
       <div class="field">
         <div class="control center">
-          <button class="button is-primary" @click="getImages()">Submit</button>
+          <button type="submit" class="button is-primary" @click="getImages()">Submit</button>
         </div>
       </div>
     </section>
 
     <section class="section center">
-      <div id="images" class="container">
-        <span v-for="image in images">
-          <a v-bind:href="image.image_url"><img v-bind:src="image.image_url" /></a>
-        </span>
+      <div class="columns">
+        <div id="images" class="column clmn" v-for="image in images" :class=getClass(image)>
+        <p>
+          <a v-bind:href="image.image_url"><img v-bind:src="image.image_url" /></a><br>
+          <span>by @{{image.author}} - xx minutes ago</span>
+        </p>
+      </div>
       </div>
     </section>
   </div>

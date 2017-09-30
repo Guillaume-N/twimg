@@ -9,7 +9,21 @@
 img {
 	width: 250px;
 	height: 250px;
-	border: 1px solid black;
+}
+
+.clmn {
 	padding: 5px;
 	margin: 10px;
+}
+
+.lessThan1 {
+	border: 2px solid blue;
+}
+
+.moreThan15 {
+	border: 2px solid grey;
+}
+
+.inBetween {
+	border: 2px solid cyan;
 }
