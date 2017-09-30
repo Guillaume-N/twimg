@@ -6,7 +6,11 @@
   "author": "Guillaume",
   "license": "MIT",
   "dependencies": {
-    "bulma": "^0.5.3",
+    "axios": "^0.16.2",
+    "compression": "^1.7.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.0",
+    "twit": "^2.2.9",
     "vue": "^2.4.4"
   }
 }
