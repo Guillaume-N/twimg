@@ -10,7 +10,7 @@ window.onload = function() {
 		},
 		methods: {
 			getImages: () => {
-				http.get(apiUrl)
+				http.get(apiUrl+'/cat')
 				.then(function (response) {
 					console.log(response.data);
 				})

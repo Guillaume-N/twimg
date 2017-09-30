@@ -18,7 +18,7 @@ const port = 8081;
 const router = express.Router();
 
 const T = new Twit({
-	//INSERT CREDENTIALS HERE
+	// CREDENTIALS
 })
 
 
@@ -50,9 +50,12 @@ app.get('/', (req, res, next) => {
 // all routes will be prefixed with /api
 app.use('/api', router);
 
-router.route('/images')
+router.route('/images/:hashtag')
 .get((req, res, next) => {
-	T.get('search/tweets', { q: '#banana filter:images', count: 50 }).then(function(result) {
+	let query = `#${req.params.hashtag} filter:images`;
+	console.log('GET /images/:hashtag query: ', query);
+
+	T.get('search/tweets', { q: query, count: 50 }).then(function(result) {
 		res.json(formatTweets(curateTweets(result.data.statuses)));
 	}).catch(function(err) {
 		console.log('error GET /images: ', err);
