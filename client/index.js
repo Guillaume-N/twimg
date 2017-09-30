@@ -5,9 +5,10 @@ window.onload = function() {
 
 	const refreshImages = () => {
 		if(app.hashtag) {
-			if(app.hashtag[0] == "#") app.hashtag = app.hashtag.substring(1);
+			let hashtag = app.hashtag;
+			if(app.hashtag[0] == "#") hashtag = app.hashtag.substring(1);
 
-			http.get(apiUrl+'/'+app.hashtag)
+			http.get(apiUrl+'/'+hashtag)
 			.then(function (response) {
 						console.log(response.data);
 						app.images = response.data;
