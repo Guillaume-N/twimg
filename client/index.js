@@ -4,25 +4,33 @@ window.onload = function() {
 	const http = axios;
 
 	const app = new Vue({
-		el: "#images",
+		el: "#twimg",
 		data: { 
-			text: "blabla"
+			text: "blabla",
+			hashtag: ""
 		},
 		methods: {
-			getImages: () => {
-				http.get(apiUrl+'/cat')
-				.then(function (response) {
-					console.log(response.data);
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
+			getImages: function() {
+				console.log(this.hashtag);
+				if(this.hashtag) {
+
+					if(this.hashtag[0] == "#") this.hashtag = this.hashtag.substring(1);
+					
+					http.get(apiUrl+'/'+this.hashtag)
+					.then(function (response) {
+						console.log(response.data);
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+				}
+
 			}
 		}
 	});
 
 
-	app.getImages();
+	//app.getImages();
 
 
 };

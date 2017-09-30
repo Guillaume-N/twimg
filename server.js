@@ -18,7 +18,7 @@ const port = 8081;
 const router = express.Router();
 
 const T = new Twit({
-	// CREDENTIALS
+	//CREDENTIALS
 })
 
 
@@ -52,7 +52,7 @@ app.use('/api', router);
 
 router.route('/images/:hashtag')
 .get((req, res, next) => {
-	let query = `#${req.params.hashtag} filter:images`;
+	const query = `${req.params.hashtag} filter:images`;
 	console.log('GET /images/:hashtag query: ', query);
 
 	T.get('search/tweets', { q: query, count: 50 }).then(function(result) {
