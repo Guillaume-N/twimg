@@ -1,7 +1,53 @@
+[v-cloak] {
+  display: none;
+}
+
 .center {
 	text-align: center;
 }
 
 .hashtag {
 	font-size: 24px;
+}
+
+img {
+	width: 230px;
+	height: 230px;
+	border-radius: 15%;
+}
+
+.clmn {
+	padding: 15px;
+	margin: 10px;
+}
+
+.lessThan1 {
+	border: 3px solid #3273dc;
+	border-radius: 5%;
+}
+
+.moreThan15 {
+	border: 3px solid #666666;
+	border-radius: 5%;
+}
+
+.inBetween {
+	border: 3px solid #FFC753;
+	border-radius: 5%;
+}
+
+.section {
+	padding: 2rem 1rem;
+}
+
+.hero-body {
+	padding: 0;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.hashtag-text {
+	margin-top: 5px;
 }
