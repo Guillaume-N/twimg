@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
   <link rel="stylesheet" href="style.css">
+
+  <script src="scripts/vue/dist/vue.min.js"></script>
+  <script src="scripts/axios/dist/axios.min.js"></script>
+  <script src="index.js"></script>
 </head>
 <body>
   <div id="twimg">
@@ -43,21 +47,15 @@
 
     <section class="section center">
       <div class="columns">
-        <div id="images" class="column clmn" v-for="image in images" :class=getClass(image)>
+        <div id="images" class="column clmn" v-for="image in images" :class=setClass(image.date)>
           <p>
             <a v-bind:href="image.image_url"><img v-bind:src="image.image_url" /></a><br>
-            <span>By @{{image.author}} - {{image.timeAgo}}</span>
+            <span class="bold" v-bind:style="{color: setTextColor(image.date)}">By @{{image.author}} - {{image.timeAgo}}</span>
           </p>
         </div>
       </div>
     </section>
   </div>
   
-
-  <script src="scripts/vue/dist/vue.js"></script>
-  <script src="index.js"></script>
-  <script src="scripts/axios/dist/axios.min.js"></script>
-
-
 </body>
 </html>

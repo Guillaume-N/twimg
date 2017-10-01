@@ -1,35 +1,40 @@
-window.onload = function() {
+window.onload = () => {
 
 	const apiUrl = 'http://localhost:8081/api/images';
 	const http = axios;
 
-	const refreshImages = () => {
+	const getImages = () => {
+		app.images = [];
+		
 		if(app.hashtag) {
 			let hashtag = app.hashtag;
 			if(app.hashtag[0] == "#") hashtag = app.hashtag.substring(1);
 
 			http.get(apiUrl+'/'+hashtag)
-			.then(function (response) {
-				console.log(response.data);
+			.then(response => {
 				response.data.map(image => {
-					image.timeAgo = minutesSinceTweetWasPosted(image.date);
-				})
+					image.timeAgo = textTimeAgo(image.date);
+				});
 				app.images = response.data;
 				window.img = response.data;
 			})
-			.catch(function (error) {
-				console.log(error);
-			});
+			.catch(err => console.log(err));
 		}
 	}
 
-	//TODO: Refactor minutesSinceTweetWasPosted and getClass
-	const minutesSinceTweetWasPosted = date => {
+	const differenceBetweenNowAndDate = date => {
 		const now = new Date();
 		const tweetDate = new Date(date);
-		let diff = new Date(now - tweetDate);
 
-		console.log('Hour diff', diff, diff.getHours());
+		return new Date(now - tweetDate);
+	}
+
+	//TODO: REFACTOR!
+
+	const textTimeAgo = date => {
+		const now = new Date();
+		const tweetDate = new Date(date);
+		const diff = differenceBetweenNowAndDate(date);
 
 		if(now.getHours() > tweetDate.getHours()) return 'more than an hour ago';
 		if(diff.getMinutes() == 0) return 'less than a minute ago';
@@ -37,16 +42,24 @@ window.onload = function() {
 		return `${diff.getMinutes()} minutes ago`;
 	}
 
-	const getClass = image => {
+	const setClass = date => {
 		const now = new Date();
-		const imageDate = new Date(image.date);
-		let diff = new Date(now - imageDate);
-
-		console.log('diff', diff.getMinutes());
+		const tweetDate = new Date(date);
+		const diff = differenceBetweenNowAndDate(date);
 
 		if (diff.getMinutes() < 1) return 'lessThan1';
-		if (diff.getMinutes() >= 15) return 'moreThan15';
+		if (now.getHours() > tweetDate.getHours() || diff.getMinutes() >= 15) return 'moreThan15';
 		return 'inBetween';
+	}
+
+	const setTextColor = date => {
+		const now = new Date();
+		const tweetDate = new Date(date);
+		const diff = differenceBetweenNowAndDate(date);
+
+		if(now.getHours() > tweetDate.getHours() || diff.getMinutes() >= 15) return '#666666';
+		if (diff.getMinutes() < 1) return '#336699';
+		return '#00d1b2';
 	}
 
 	const app = new Vue({
@@ -56,11 +69,12 @@ window.onload = function() {
 			images: ""
 		},
 		methods: {
-			getImages: refreshImages,
-			getClass: getClass
+			getImages: getImages,
+			setClass: setClass,
+			setTextColor: setTextColor
 		}
 	});	
 
 	app.getImages();
-	setInterval(refreshImages, 30000);
+	setInterval(getImages, 30000);
 };

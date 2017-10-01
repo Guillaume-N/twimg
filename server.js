@@ -4,6 +4,8 @@ const bodyParser 	= require('body-parser');
 const compress		= require('compression');
 const Twit			= require('twit');
 const app			= express();
+const router 		= express.Router();
+const port 			= 8081;
 
 app.use(cors());
 app.options('*', cors());
@@ -13,12 +15,33 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(compress());
 
-const port = 8081;
-const router = express.Router();
 
 const T = new Twit({
 	// CREDENTIALS
 });
+
+app.get('/', (req, res, next) => {
+	res.sendFile(__dirname + '/index.html');
+});
+
+// all routes will be prefixed with /api
+app.use('/api', router);
+
+router.route('/images/:hashtag')
+.get((req, res, next) => {
+	const query = `#${req.params.hashtag}`;
+	console.log('GET /images/:hashtag query: ', query);
+
+	T.get('search/tweets', { q: query, count: 50 }).then(result => {
+		res.json(formatTweets(curateTweets(result.data.statuses)));
+	}).catch(err => {
+		console.log('error GET /images: ', err);
+	});
+});
+
+
+app.listen(port);
+console.log(`Server running on port ${port}`);
 
 
 const isPhoto = tweets => tweets.filter(tweet => tweet.extended_entities.media[0].type == 'photo').slice(0, 3);
@@ -44,27 +67,3 @@ const formatTweets = tweets => {
 
 	return formattedTweets;
 }
-
-
-app.get('/', (req, res, next) => {
-	res.sendFile(__dirname + '/index.html');
-});
-
-// all routes will be prefixed with /api
-app.use('/api', router);
-
-router.route('/images/:hashtag')
-.get((req, res, next) => {
-	const query = `#${req.params.hashtag}`;
-	console.log('GET /images/:hashtag query: ', query);
-
-	T.get('search/tweets', { q: query, count: 50 }).then(function(result) {
-		res.json(formatTweets(curateTweets(result.data.statuses)));
-	}).catch(function(err) {
-		console.log('error GET /images: ', err);
-	});
-});
-
-
-app.listen(port);
-console.log(`Server running on port ${port}`);

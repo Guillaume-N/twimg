@@ -7,25 +7,29 @@
 }
 
 img {
-	width: 250px;
-	height: 250px;
+	width: 230px;
+	height: 230px;
+	border-radius: 15%;
 }
 
 .clmn {
-	padding: 5px;
+	padding: 15px;
 	margin: 10px;
 }
 
 .lessThan1 {
-	border: 2px solid blue;
+	border: 3px solid #336699;
+	border-radius: 5%;
 }
 
 .moreThan15 {
-	border: 2px solid grey;
+	border: 3px solid #666666;
+	border-radius: 5%;
 }
 
 .inBetween {
-	border: 2px solid cyan;
+	border: 3px solid #00d1b2;
+	border-radius: 5%;
 }
 
 .section {
@@ -34,4 +38,8 @@ img {
 
 .hero-body {
 	padding: 0;
+}
+
+.bold {
+	font-weight: bold;
 }
