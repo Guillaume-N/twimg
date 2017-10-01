@@ -5,7 +5,7 @@ window.onload = () => {
 
 	const getImages = () => {
 		app.images = [];
-		
+
 		if(app.hashtag) {
 			let hashtag = app.hashtag;
 			if(app.hashtag[0] == "#") hashtag = app.hashtag.substring(1);
@@ -22,19 +22,12 @@ window.onload = () => {
 		}
 	}
 
-	const differenceBetweenNowAndDate = date => {
-		const now = new Date();
-		const tweetDate = new Date(date);
-
-		return new Date(now - tweetDate);
-	}
-
 	//TODO: REFACTOR!
 
 	const textTimeAgo = date => {
 		const now = new Date();
 		const tweetDate = new Date(date);
-		const diff = differenceBetweenNowAndDate(date);
+		const diff = new Date(now - tweetDate);
 
 		if(now.getHours() > tweetDate.getHours()) return 'more than an hour ago';
 		if(diff.getMinutes() == 0) return 'less than a minute ago';
@@ -45,7 +38,7 @@ window.onload = () => {
 	const setClass = date => {
 		const now = new Date();
 		const tweetDate = new Date(date);
-		const diff = differenceBetweenNowAndDate(date);
+		const diff = new Date(now - tweetDate);
 
 		if (diff.getMinutes() < 1) return 'lessThan1';
 		if (now.getHours() > tweetDate.getHours() || diff.getMinutes() >= 15) return 'moreThan15';
@@ -55,7 +48,7 @@ window.onload = () => {
 	const setTextColor = date => {
 		const now = new Date();
 		const tweetDate = new Date(date);
-		const diff = differenceBetweenNowAndDate(date);
+		const diff = new Date(now - tweetDate);
 
 		if(now.getHours() > tweetDate.getHours() || diff.getMinutes() >= 15) return '#666666';
 		if (diff.getMinutes() < 1) return '#336699';
@@ -66,7 +59,7 @@ window.onload = () => {
 		el: "#twimg",
 		data: { 
 			hashtag: "#sneakers",
-			images: ""
+			images: []
 		},
 		methods: {
 			getImages: getImages,

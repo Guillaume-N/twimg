@@ -30,24 +30,37 @@
     </section>
 
     <section class="section center">
-      <div class="field">
-        <label class="label">Enter a hashtag :</label>
-      </div>
-      <div class="field">
-        <div class="control">
-          <input class="input" type="text" placeholder="#sneakers" v-model="hashtag" autofocus>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Enter a hashtag :</label>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <div class="control">
+              <input class="input" type="text" placeholder="#sneakers" v-model="hashtag" autofocus>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <div class="control center">
+              <button type="submit" class="button is-primary" @click="getImages()">Submit</button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="field">
-        <div class="control center">
-          <button type="submit" class="button is-primary" @click="getImages()">Submit</button>
-        </div>
-      </div>
+      
+      
+      
     </section>
 
     <section class="section center">
       <div class="columns">
-        <div id="images" class="column clmn" v-for="image in images" :class=setClass(image.date)>
+        <div v-cloak id="images" class="column clmn" v-for="image in images" :class=setClass(image.date)>
           <p>
             <a v-bind:href="image.image_url"><img v-bind:src="image.image_url" /></a><br>
             <span class="bold" v-bind:style="{color: setTextColor(image.date)}">By @{{image.author}} - {{image.timeAgo}}</span>

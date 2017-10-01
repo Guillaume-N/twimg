@@ -33,7 +33,7 @@ img {
 }
 
 .section {
-	padding: 1.5rem 0.75rem;
+	padding: 2rem 1rem;
 }
 
 .hero-body {
@@ -42,4 +42,8 @@ img {
 
 .bold {
 	font-weight: bold;
+}
+
+[v-cloak] {
+  display: none;
 }
