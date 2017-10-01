@@ -1,0 +1,16 @@
+{
+  "name": "twimg",
+  "version": "0.0.1",
+  "description": "Find latest images from twitter",
+  "main": "index.js",
+  "author": "Guillaume",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "compression": "^1.7.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.0",
+    "twit": "^2.2.9",
+    "vue": "^2.4.4"
+  }
+}
