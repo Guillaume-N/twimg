@@ -11,15 +11,18 @@
 </head>
 <body>
   <div id="twimg">
-    <section class="section">
-      <div class="container">
-        <h1 class="title">
-          <i class="fa fa-hashtag hashtag" aria-hidden="true"></i>Twimg
-        </h1>
-        <p class="subtitle">
-          Find latest images from twitter
-        </p>
+    <section class="hero is-primary section">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            <i class="fa fa-hashtag hashtag" aria-hidden="true"></i>Twimg
+          </h1>
+          <p class="subtitle">
+            Find latest images from twitter
+          </p>
+        </div>
       </div>
+      
     </section>
 
     <section class="section center">
@@ -41,11 +44,11 @@
     <section class="section center">
       <div class="columns">
         <div id="images" class="column clmn" v-for="image in images" :class=getClass(image)>
-        <p>
-          <a v-bind:href="image.image_url"><img v-bind:src="image.image_url" /></a><br>
-          <span>by @{{image.author}} - {{image.timeAgo}}</span>
-        </p>
-      </div>
+          <p>
+            <a v-bind:href="image.image_url"><img v-bind:src="image.image_url" /></a><br>
+            <span>By @{{image.author}} - {{image.timeAgo}}</span>
+          </p>
+        </div>
       </div>
     </section>
   </div>

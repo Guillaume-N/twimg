@@ -33,7 +33,7 @@ window.onload = function() {
 
 		if(now.getHours() > tweetDate.getHours()) return 'more than an hour ago';
 		if(diff.getMinutes() == 0) return 'less than a minute ago';
-		if(diff.getMinutes() == 1) return 'A minute ago';
+		if(diff.getMinutes() == 1) return 'a minute ago';
 		return `${diff.getMinutes()} minutes ago`;
 	}
 
