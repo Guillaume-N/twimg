@@ -51,14 +51,14 @@ window.onload = () => {
 		const diff = new Date(now - tweetDate);
 
 		if(now.getHours() > tweetDate.getHours() || diff.getMinutes() >= 15) return '#666666';
-		if (diff.getMinutes() < 1) return '#336699';
-		return '#00d1b2';
+		if (diff.getMinutes() < 1) return '#3273dc';
+		return '#FFC753';
 	}
 
 	const app = new Vue({
 		el: "#twimg",
 		data: { 
-			hashtag: "#sneakers",
+			hashtag: "#cookies",
 			images: []
 		},
 		methods: {
