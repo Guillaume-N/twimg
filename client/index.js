@@ -11,6 +11,9 @@ window.onload = function() {
 			http.get(apiUrl+'/'+hashtag)
 			.then(function (response) {
 				console.log(response.data);
+				response.data.map(image => {
+					image.timeAgo = minutesSinceTweetWasPosted(image.date);
+				})
 				app.images = response.data;
 				window.img = response.data;
 			})
@@ -18,6 +21,20 @@ window.onload = function() {
 				console.log(error);
 			});
 		}
+	}
+
+	//TODO: Refactor minutesSinceTweetWasPosted and getClass
+	const minutesSinceTweetWasPosted = date => {
+		const now = new Date();
+		const tweetDate = new Date(date);
+		let diff = new Date(now - tweetDate);
+
+		console.log('Hour diff', diff, diff.getHours());
+
+		if(now.getHours() > tweetDate.getHours()) return 'more than an hour ago';
+		if(diff.getMinutes() == 0) return 'less than a minute ago';
+		if(diff.getMinutes() == 1) return 'A minute ago';
+		return `${diff.getMinutes()} minutes ago`;
 	}
 
 	const getClass = image => {

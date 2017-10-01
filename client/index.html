@@ -43,7 +43,7 @@
         <div id="images" class="column clmn" v-for="image in images" :class=getClass(image)>
         <p>
           <a v-bind:href="image.image_url"><img v-bind:src="image.image_url" /></a><br>
-          <span>by @{{image.author}} - xx minutes ago</span>
+          <span>by @{{image.author}} - {{image.timeAgo}}</span>
         </p>
       </div>
       </div>

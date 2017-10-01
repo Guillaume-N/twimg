@@ -27,3 +27,7 @@ img {
 .inBetween {
 	border: 2px solid cyan;
 }
+
+.section {
+	padding: 1.5rem 0.75rem;
+}
