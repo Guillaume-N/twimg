@@ -17,7 +17,11 @@ app.use(compress());
 
 
 const T = new Twit({
-	// CREDENTIALS
+	consumer_key:         '***',
+	consumer_secret:      '***',
+	access_token:         '***',
+	access_token_secret:  '***',
+  	timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
 });
 
 app.get('/', (req, res, next) => {
@@ -50,20 +54,16 @@ const findTweetsContainingAnImage = tweets => tweets.filter(tweet => tweet.hasOw
 
 const curateTweets = tweets => isPhoto(findTweetsContainingAnImage(tweets));
 
-const formatTweets = tweets => {
-	let formattedTweets = [];
-
-	tweets.map(tweet => {
-
-		let formattedTweet = {
-			author: tweet.user.screen_name,
+const formatSingleTweet = tweet => {
+	return { author: tweet.user.screen_name,
 			image_url: tweet.extended_entities.media[0].media_url,
 			image_url_https: tweet.extended_entities.media[0].media_url_https,
 			date: tweet.created_at
 		}
+}
 
-		formattedTweets.push(formattedTweet);
-	});
+const formatTweets = tweets => {
+	let formattedTweets = tweets.map(formatSingleTweet);
 
 	return formattedTweets;
 }
